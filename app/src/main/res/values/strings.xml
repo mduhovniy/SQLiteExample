@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">SQLiteExample</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="songNameText">Song Name</string>
+    <string name="singerNameText">Singer Name</string>
+    <string name="yearText">Year</string>
+    <string name="bandText">Band</string>
+    <string name="buttonAddText">Add Song</string>
+    <string name="buttonDelText">Delete Songs</string>
+    <string name="buttonViewText">View Songs</string>
+    <string name="snackbar_row_added">New song successfully added</string>
+    <string name="snackbar_row_deleted">songs successfully deleted</string>
+    <string name="snackbar_action">Ok;)</string>
+    <string name="buttonCreateBaseText">Create Database</string>
+    <string name="buttonDeleteBaseText">Delete Database</string>
+</resources>

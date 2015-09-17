@@ -16,8 +16,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String cmd = "CREATE TABLE IF NOT EXISTsongs (id INTEGER PRIMARY KEY autoincrement " +
-                "NOT NULL, song VACHAR, singer VARCHAR, year INTEGER, band VARCHAR);";
+        String cmd = "CREATE TABLE songs (_id INTEGER PRIMARY KEY " +
+                ", song TEXT, singer TEXT, year INTEGER, band TEXT);";
         try {
             db.execSQL(cmd);
         } catch (SQLException e) {

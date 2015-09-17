@@ -1,11 +1,16 @@
 package info.duhovniy.maxim.sqliteexample;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,7 +80,16 @@ public class MainActivity extends AppCompatActivity {
         butView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handler.listSong();
+                ArrayList<String> list = new ArrayList<>();
+                Cursor cursor = handler.listSong();
+
+                String [] from = {"song", "singer"};
+                int [] to = {R.id.song, R.id.singer};
+                SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(MainActivity.this,
+                        R.layout.row,cursor,from,to,0);
+                ListView mListView = (ListView) findViewById(R.id.my_list_view);
+                mListView.setAdapter(mAdapter);
+
             }
         });
 

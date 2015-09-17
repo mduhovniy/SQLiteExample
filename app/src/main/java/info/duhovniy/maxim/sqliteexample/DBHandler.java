@@ -6,9 +6,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.CursorAdapter;
 
 /**
  * Created by maxduhovniy on 9/8/15.
@@ -32,7 +29,7 @@ public class DBHandler extends ListActivity {
             values.put("singer", singer);
             values.put("year", year);
             values.put("band", band);
-            db.insertOrThrow("songs", null, values);
+            db.insert("songs", null, values);
         } catch (SQLException e) {
             e.getMessage();
             return false;
@@ -60,34 +57,19 @@ public class DBHandler extends ListActivity {
         return numRowsDeleted;
     }
 
-    public void listSong() {
+    public Cursor listSong() {
 
-        SQLiteDatabase db = helper.getWritableDatabase();
+        Cursor cursor = null;
+        SQLiteDatabase db = helper.getReadableDatabase();
 
         try {
-            Cursor cursor = db.rawQuery("SELECT song, singer, year, band FROM songs;", null);
-
-            if (cursor != null) {
-
-                RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-
-                // use this setting to improve performance if you know that changes
-                // in content do not change the layout size of the RecyclerView
-                mRecyclerView.setHasFixedSize(true);
-
-                // use a linear layout manager
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-                mRecyclerView.setLayoutManager(mLayoutManager);
-
-                mRecyclerView.setAdapter(new ClientCursorAdapter(this, R.layout.row, cursor, 0));
-
-            }
+            cursor = db.query("songs", null, null, null, null, null, null);
         } catch (SQLException e) {
             e.getMessage();
-        } finally {
-            if (db.isOpen())
-                db.close();
         }
+
+        return cursor;
+
     }
 
 }

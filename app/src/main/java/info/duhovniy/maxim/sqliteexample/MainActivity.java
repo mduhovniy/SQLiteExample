@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     private DBHandler handler;
@@ -80,11 +78,10 @@ public class MainActivity extends AppCompatActivity {
         butView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> list = new ArrayList<>();
                 Cursor cursor = handler.listSong();
 
-                String [] from = {"song", "singer"};
-                int [] to = {R.id.song, R.id.singer};
+                String [] from = {"song", "singer", "year", "band"};
+                int [] to = {R.id.song, R.id.singer, R.id.year, R.id.band};
                 SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(MainActivity.this,
                         R.layout.row,cursor,from,to,0);
                 ListView mListView = (ListView) findViewById(R.id.my_list_view);
